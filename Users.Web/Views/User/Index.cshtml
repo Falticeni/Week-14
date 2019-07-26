@@ -5,26 +5,38 @@
     <h2>@ViewBag.Title</h2>
 }
 
-<div>
-    <table class="table">
-        <thead>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Delete</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var u in Model)
+        {
             <tr>
-                <td>Id</td>
-                <td>UserName</td>
-                <td>Email</td>
+                <td>@u.Id</td>
+                <td>@u.UserName</td>
+                <td>@u.Email</td>
+                <td class="text-center">
+                    @Html.ActionLink(" ", "Edit", new { id = u.Id }, new { @class = "btn glyphicon glyphicon-edit" })
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink(" ", "Delete", new { id = u.Id }, new { @class = "btn text-danger glyphicon glyphicon-trash" })
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var user in Model)
-                {
-                    <tr>
-                        <td>@user.Id</td>
-                        <td>@user.Email</td>
-                        <td>@user.UserName</td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-</div>
+        }
+    }
+</table>
+@Html.ActionLink("Add New User", "Add", null, new { @class = "btn btn-primary right" })
+@{
+    for (int i = 1; i <= ViewBag.NumberOfPages; i += 10)
+    {
+        @Html.ActionLink($"{i / 10 % 10 + 1}", "Index", new { @id = i / 10 % 10 + 1 }, new { @class = "btn" })
+    }
+}
+

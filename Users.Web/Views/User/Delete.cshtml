@@ -1,0 +1,39 @@
+﻿@model Users.Web.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-danger">Are you sure you want to delete @Model.UserName?</h2>
+<table class="table table-bordered">
+    <tr>
+        <td class="danger">Id</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td class="danger">Username</td>
+        <td>@Model.UserName</td>
+    </tr>
+    <tr>
+        <td class="danger">Email</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td class="danger">Description</td>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <td class="danger">City</td>
+        <td>@Model.City</td>
+    </tr>
+    <tr>
+        <td class="danger">Street</td>
+        <td>@Model.Street</td>
+    </tr>
+</table>
+@using (Html.BeginForm("Delete", "User", new { @id = Model.Id }))
+{
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary" })
+}

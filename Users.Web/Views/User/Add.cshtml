@@ -1,0 +1,48 @@
+﻿@model Users.Web.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add</h2>
+@using (Html.BeginForm("Add", "User", new { id = Model.Id }))
+{
+    <div class="form-group">
+        <div class="form-group">
+            @Html.LabelFor(u => u.Id, "UID:")
+            @Html.TextBoxFor(u => u.Id, new { id = Model.Id, @readonly = "readonly", @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(u => u.UserName, "Username:")
+            @Html.TextBoxFor(u => u.UserName, new { userName = Model.UserName, @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Email, "Email:")
+            @Html.TextBoxFor(u => u.Email, new { description = Model.Email, @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Description, "Description:")
+            @Html.TextAreaFor(u => u.Description, new { email = Model.Description, @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.Description, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.City, "City:")
+            @Html.TextBoxFor(u => u.City, new { city = Model.City, @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.City, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Street, "Street:")
+            @Html.TextBoxFor(u => u.Street, new { street = Model.Street, @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.Street, "", new { @class = "text-danger" })
+        </div>
+        <input type="submit" value="Save" class="btn btn-success" />
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+    </div>
+}
+
+@Html.ActionLink("Back to Users", "Index")
+
